@@ -13,6 +13,7 @@
                 <tab id="app-info-tab">Application Information</tab>
                 <tab id="odata-tab">OData Requests</tab>
                 <tab id="elements-registry-tab">Elements Registry</tab>
+                <tab id="changes">Changes</tab>
             </tabs>
             <contents>
 
@@ -140,7 +141,23 @@
                     </splitter>
                 </content>
                 <!-- Elements registry /ends-->
+                <!-- Changes /start-->
+                <content for="changes" class="changesTab">
+                    <splitter id="changes-horizontal-splitter">
+                        <!-- SplitContainer begin side /start-->
+                        <start>
+                            <changes-master-view id="changes-tab-master"/>
+                        </start>
+                        <!-- SplitContainer begin side /ends-->
 
+                        <!-- SplitContainer end side /start-->
+                        <end>
+                            <changes-detail-view id="changes-tab-detail"/>
+                        </end>
+                        <!-- SplitContainer end side /ends-->
+                    </splitter>
+                </content>
+                <!-- Changes /ends-->
             </contents>
         </tabbar>
 

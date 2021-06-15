@@ -1168,3 +1168,262 @@ elements-registry-master-view:not([show-filtered-elements]) .selected ::selectio
 .elementsRegistry splitter {
   background-color: #000;
 }
+changes-master-view,
+changes-detail-view {
+  height: 100%;
+}
+.changesTab {
+  flex-direction: column;
+  background-color: #252525;
+  color: #949494;
+}
+.changesTab .data-grid:focus {
+  outline: none;
+}
+.changesTab h3,
+.changesTab h4,
+.changesTab p {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+.changesTab .error {
+  color: red;
+}
+.changesTab span.url {
+  margin-right: 0.15rem;
+  margin-left: 0.15rem;
+  font-size: medium;
+  vertical-align: middle;
+}
+.changesTab tr.batch span.url {
+  font-size: small;
+  vertical-align: baseline;
+}
+.changesTab td.url {
+  padding-bottom: 0.3rem;
+  padding-top: 0.3rem;
+}
+.changesTab .secondLevel td.url {
+  padding-left: 1rem;
+}
+.changesTab tr:nth-child(even) {
+  background-color: #252525;
+}
+.changesTab tr {
+  padding: 0.05rem;
+}
+.changesTab td.status,
+.changesTab td.method {
+  min-width: 30px;
+}
+.changesTab td.note {
+  min-width: 100px;
+}
+.changesTab splitter.endVisible td.note {
+  display: none;
+}
+.changesTab tr.selected {
+  background-color: Lightblue;
+}
+.changesTab div.hidden {
+  visibility: hidden;
+}
+.changesTab splitter {
+  background-color: #000;
+}
+.changesTab splitter start {
+  flex-direction: column;
+}
+.changesTab splitter > start clear-button {
+  height: 1.3rem;
+  width: 1.3rem;
+  padding-top: 0.15rem;
+  padding-left: 0.15rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  color: #838181;
+  font-weight: bold;
+  display: block;
+}
+.changesTab splitter > start clear-button:hover {
+  opacity: 1;
+}
+.changesTab .data-grid,
+.changesTab #changeEditor {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: auto;
+}
+.changesTab table {
+  width: 100%;
+}
+/*
+ * Copyright (C) 2008 Apple Inc. All Rights Reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *        notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *        notice, this list of conditions and the following disclaimer in the
+ *        documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY APPLE INC. ``AS IS'' AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED.         IN NO EVENT SHALL APPLE INC. OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+ * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+.changesTab {
+  cursor: default;
+  font-family: ".SFNSDisplay-Regular", "Helvetica Neue", "Lucida Grande", sans-serif;
+  font-size: 12px;
+  tab-size: 4;
+  user-select: none;
+}
+.changesTab * {
+  min-width: 0px;
+  min-height: 0px;
+}
+.changesTab * {
+  box-sizing: border-box;
+}
+.changesTab :focus {
+  outline-width: 0px;
+}
+.changesTab input[type="radio"]:focus {
+  outline: -webkit-focus-ring-color auto 5px;
+}
+.changesTab img {
+  -webkit-user-drag: none;
+}
+.changesTab iframe,
+.changesTab a img {
+  border: none;
+}
+.changesTab button,
+.changesTab input,
+.changesTab select {
+  font-family: inherit;
+  font-size: inherit;
+}
+.changesTab input {
+  background-color: white;
+  color: inherit;
+}
+.changesTab input::placeholder {
+  color: rgba(0, 0, 0, 0.54);
+}
+.changesTab span[is="dt-icon-label"] {
+  flex: 0 0 auto;
+}
+.changesTab [is="ui-icon"] {
+  display: inline-block;
+  flex-shrink: 0;
+}
+.changesTab [is="ui-icon"].icon-mask {
+  background-color: #6e6e6e;
+  -webkit-mask-position: var(--spritesheet-position);
+}
+.changesTab .spritesheet-smallicons:not(.icon-mask) {
+  background-image: url("/images/smallIcons.svg");
+}
+.changesTab .spritesheet-smallicons.icon-mask {
+  -webkit-mask-image: url("/images/smallIcons.svg");
+}
+.changesTab .spritesheet-largeicons.icon-mask {
+  -webkit-mask-image: url("/images/largeIcons.svg");
+}
+.changesTab .spritesheet-mediumicons.icon-mask {
+  -webkit-mask-image: url("/images/mediumIcons.svg");
+}
+.changesTab .spritesheet-mediumicons:not(.icon-mask) {
+  background-image: url(/images/mediumIcons.svg);
+}
+.changesTab :host-context(.force-white-icons) [is="ui-icon"].spritesheet-smallicons,
+.changesTab .force-white-icons [is="ui-icon"].spritesheet-smallicons,
+.changesTab [is="ui-icon"].force-white-icons.spritesheet-smallicons,
+.changesTab -theme-preserve {
+  -webkit-mask-image: url("/images/smallIcons.svg");
+  -webkit-mask-position: var(--spritesheet-position);
+  background: #fafafa !important;
+}
+.changesTab ::selection {
+  background-color: #252525;
+}
+.changesTab [data-aria-utils-animation-hack] {
+  animation: 0s ease 0s 1 normal none running ANIMATION-HACK;
+}
+.changesTab .largeicon-clear:hover:not(:active) {
+  background-color: #333;
+}
+.changesTab .largeicon-store:hover:not(:active) {
+  background-color: #333;
+}
+.changesTab [is=ui-icon]:not(.icon-mask) {
+  background-position: var(--spritesheet-position);
+}
+.changesTab splitter > end > .toolbar-item {
+  background: none;
+  top: 0.15rem;
+  left: 0.2rem;
+  right: auto;
+  opacity: 0.7;
+}
+.changesTab .close-button {
+  width: 14px;
+  height: 14px;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.changesTab .hover-icon,
+.changesTab .active-icon {
+  display: none;
+}
+.changesTab .close-button:hover .default-icon,
+.changesTab .close-button:active .default-icon {
+  display: none;
+}
+.changesTab .close-button:hover .hover-icon {
+  display: block;
+}
+.changesTab .close-button[data-keyboard-focus="true"]:focus .default-icon,
+.changesTab .close-button:active .default-icon {
+  display: none;
+}
+.changesTab .close-button[data-keyboard-focus="true"]:focus .hover-icon {
+  display: block;
+}
+.changesTab .close-button:active .hover-icon {
+  display: none !important;
+}
+.changesTab .close-button:active .active-icon {
+  display: block;
+}
+.changesTab .toolbar-item {
+  position: relative;
+  display: flex;
+  background-color: transparent;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  height: 26px;
+  width: 26px;
+  border: none;
+  white-space: pre;
+}

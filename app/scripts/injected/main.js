@@ -6,6 +6,7 @@ sap.ui.require(['ToolsAPI'], function (ToolsAPI) {
     var controlUtils = require('../modules/injected/controlUtils.js');
     var rightClickHandler = require('../modules/injected/rightClickHandler.js');
     var applicationUtils = require('../modules/injected/applicationUtils');
+    var changeUtils = require('../modules/injected/changeUtils');
 
     // Create global reference for the extension.
     ui5inspector.createReferences();
@@ -74,6 +75,8 @@ sap.ui.require(['ToolsAPI'], function (ToolsAPI) {
         try {
             // Change the property through its setter
             oControl['set' + sProperty](oNewValue);
+            var change = changeUtils.stringifyChange(oControl, sProperty, oNewValue);
+            message.send({action: 'on-store-property-change', change });
         } catch (error) {
             console.warn(error);
         }
@@ -225,7 +228,15 @@ sap.ui.require(['ToolsAPI'], function (ToolsAPI) {
                     target: sControlId
                 }
             });
-        }
+        },
+
+        /**
+         * Export changes to file system
+         * @param {Object} event - event containing the changes array
+         */
+        'export-changes': function (event) {
+            changeUtils.exportChanges(event.detail.data);
+        },
     };
 
     /**

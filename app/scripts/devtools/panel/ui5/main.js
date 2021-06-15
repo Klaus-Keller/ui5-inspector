@@ -21,6 +21,8 @@
     var ODataDetailView = require('../../../modules/ui/ODataDetailView.js');
     var ODataMasterView = require('../../../modules/ui/ODataMasterView.js');
     var OElementsRegistryMasterView = require('../../../modules/ui/OElementsRegistryMasterView.js');
+    var ChangesDetailsView = require('../../../modules/ui/ChangesDetailView.js');
+    var ChangesMasterView = require('../../../modules/ui/ChangesMasterView.js');
 
     // Apply theme
     // ================================================================================
@@ -283,6 +285,46 @@
         }
     });
 
+    // Bootstrap for 'Changes' tab
+    // ================================================================================
+    var changesSplitter = new Splitter('changes-horizontal-splitter', {
+        endContainerWidth: '50%',
+        isEndContainerClosable: true,
+        hideEndContainer: true
+    });
+
+    // Master view for changes
+    var changesDetailView = new ChangesDetailsView('changes-tab-detail');
+    var changesMasterView = new ChangesMasterView('changes-tab-master', {
+
+        /**
+         * Method fired when an OData Entry log is selected.
+         * @param {Object} data
+         */
+         onSelectChange: function (data) {
+            changesSplitter.showEndContainer();
+            changesDetailView.update(data);
+        },
+        /**
+         * Clears all  Entry log items.
+         */
+         onClearChanges: function () {
+            changesDetailView.clear();
+            changesSplitter.hideEndContainer();
+        },
+
+        /**
+         * Handler in case the export button is clicked in 'Changes' tab
+         * @param {string[]} changes - array of stringified changes
+         */
+        onExportChanges: function(changes) {
+            port.postMessage({
+                action: 'export-changes',
+                data: changes
+            });
+        }
+    });
+
     // ================================================================================
     // Communication
     // ================================================================================
@@ -421,6 +463,14 @@
 
             overlayNoUI5Section.style.display = 'block';
             overlayUnsupportedVersionSection.style.display = 'none';
+        },
+
+        /**
+         * Handler for newly stored property changes 
+         * @param {string} change 
+         */
+        'on-store-property-change': function(message) {
+            changesMasterView.logChange(message.change);
         }
     };
 
